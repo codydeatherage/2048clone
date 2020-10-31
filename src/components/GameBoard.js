@@ -9,7 +9,11 @@ class GameBoard extends Component{
             <div className="game-board">
                 {/* <h1>Game Board</h1> */}
                 {boardState.map((state, index) =>{
-                    return(<GameBoardItem state ={state} key ={index}/>);
+                    if(state > 0){
+                        return(<GameBoardItem id="#active-tile" state ={state} key ={index}/>);
+                    }else{
+                        return(<GameBoardItem id="empty-tile" state={state} key={index}/>);
+                    }
                 })}
             </div>
         );
