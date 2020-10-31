@@ -7,6 +7,7 @@ import GameInfoPanel from './components/GameInfoPanel';
 import GameBoardItem from './components/GameBoardItem';
 import reportWebVitals from './reportWebVitals';
 
+//ewrwarasdf
 let boardState = [
   0, 1, 0, 0,
   0, 0, 0, 0,
