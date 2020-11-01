@@ -8,12 +8,13 @@ import GameBoardItem from './components/GameBoardItem';
 import reportWebVitals from './reportWebVitals';
 
 //ewrwarasdf
-let boardState = [
-  [0, 1, 0, 0],
+/* let boardState = [
   [0, 0, 0, 0],
-  [0, 4, 0, 0],
-  [0, 0, 5, 0]
-];
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]
+]; */
+console.log('gb',GameBoard.state);
 document.onkeydown = checkKey;
 function checkKey(e) {
   e = e || window.event;
@@ -33,30 +34,29 @@ function checkKey(e) {
 
 }
 
-document.addEventListener('keydown', function(e) {
+/* document.addEventListener('keydown', function(e) {
   switch (e.key) {
+      case ' ':
+
+         console.log('space bar'); 
+        break;
       case 'ArrowLeft':
-          console.log('left');
           break;
       case 'ArrowUp':
-        console.log('up');
           break;
       case 'ArrowRight':
-        console.log('right');
           break;
       case 'ArrowDown':
-        console.log('down');
           break;
   }
-});
+}); */
+
 ReactDOM.render(
   <React.StrictMode>
     <div className = "App">
       <GameInfoPanel></GameInfoPanel>
       <br></br>
-      <GameBoard
-        boardState = {boardState}
-      ></GameBoard>
+      <GameBoard></GameBoard>
       <div className="bot-pad"></div>
     </div>
   </React.StrictMode>,
