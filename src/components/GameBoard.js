@@ -8,12 +8,15 @@ class GameBoard extends Component{
         return(
             <div className="game-board">
                 {/* <h1>Game Board</h1> */}
-                {boardState.map((state, index) =>{
-                    if(state > 0){
-                        return(<GameBoardItem id="#active-tile" state ={state} key ={index}/>);
-                    }else{
-                        return(<GameBoardItem id="empty-tile" state={state} key={index}/>);
-                    }
+                {boardState.map((state) =>{
+                    return state.map((s) =>{
+                        if(s > 0){
+                            return(<GameBoardItem id="#active-tile" state ={s}/*  key ={index} *//>);
+                        }else{
+                            return(<GameBoardItem id="empty-tile" state={s} /* key={index} *//>);
+                        }
+                    })
+                 
                 })}
             </div>
         );

@@ -9,10 +9,10 @@ import reportWebVitals from './reportWebVitals';
 
 //ewrwarasdf
 let boardState = [
-  0, 1, 0, 0,
-  0, 0, 0, 0,
-  0, 0, 0, 0,
-  0, 0, 5, 0
+  [0, 1, 0, 0],
+  [0, 0, 0, 0],
+  [0, 4, 0, 0],
+  [0, 0, 5, 0]
 ];
 document.onkeydown = checkKey;
 function checkKey(e) {
