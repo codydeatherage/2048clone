@@ -3,12 +3,15 @@
   top: 20px;
   height: 1000px;
   background-color: #282c34;
+
 }
 
 .bot-pad{
   height: 1px;
   background-color:#282c34 ;
 }
+
+
 
 .game-board{
   position: relative;
@@ -39,7 +42,6 @@
   line-height: 125px;
  
 }
-
 .game-piece{
   position: relative;
   border-radius: 5px;
@@ -47,6 +49,19 @@
   width: 125px;
   background-color: rgb(246, 242, 222);
   border: 3px solid black;
+}
+
+#empty-tile{
+background-color:rgb(122, 120, 109) ;
+}
+.bg{
+  background-color: #282c34;
+  height: 100%;
+  width: 100%;
+  top: -20px;
+}
+#active-tile{
+  background-color:rgb(246, 242, 222)
 }
 
 #empty-tile{
