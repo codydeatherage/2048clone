@@ -33,10 +33,11 @@ class GameBoard extends Component{
         return Math.floor(Math.random() * 4);
     }
     onKeyPress = (e) =>{
-        switch(e.key){
-            case ' ': this.startGame(); break;
-        }
         console.log(e.key);
+      /*   switch(e.key){
+            case 'Enter': this.startGame(); break;
+        } */
+        
     }
     render(){
         const {boardState} = this.props;

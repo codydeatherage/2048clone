@@ -1,57 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import GameBoard from './components/GameBoard';
 import GameInfoPanel from './components/GameInfoPanel';
 import GameBoardItem from './components/GameBoardItem';
 import reportWebVitals from './reportWebVitals';
-
-//ewrwarasdf
-/* let boardState = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0]
-]; */
-
-
-console.log('gb',GameBoard.state);
-document.onkeydown = checkKey;
-function checkKey(e) {
-  e = e || window.event;
-
-  if (e.key === 'ArrowUp') {
-      // up arrow
-  }
-  else if (e.key === 'ArrowDown') {
-      // down arrow
-  }
-  else if (e.key === 'ArrowLeft') {
-     // left arrow
-  }
-  else if (e.key === 'ArrowRight') {
-     // right arrow
-  }
-
-}
-
-/* document.addEventListener('keydown', function(e) {
-  switch (e.key) {
-      case ' ':
-
-         console.log('space bar'); 
-        break;
-      case 'ArrowLeft':
-          break;
-      case 'ArrowUp':
-          break;
-      case 'ArrowRight':
-          break;
-      case 'ArrowDown':
-          break;
-  }
-}); */
+import './App.css';
 
 ReactDOM.render(
   <React.StrictMode>

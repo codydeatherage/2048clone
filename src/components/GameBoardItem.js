@@ -2,17 +2,26 @@ import React, {Component} from 'react';
 
 
 class GameBoardItem extends Component{
+   
+    keyDown = (e) =>{
+        
+        console.log(e.charCode); 
+        console.log(e.keyCode); 
+        console.log(e.code);
+    }
+      
+    
     render(){
         let id = this.props.id;
         if(this.props.state > 0){
             return(
-                <div className="game-piece" id={id}>
+                <div onKeyDown={this.keyDown} className="game-piece" id={id}>
                     <h1>{this.props.state}</h1>
                 </div>
             )
         }else{
             return(
-                <div className="game-piece" id={id}>
+                <div onKeyDown={this.keyDown} className="game-piece" id={id}>
                     <h1></h1>
                 </div>
             )
