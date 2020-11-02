@@ -14,6 +14,8 @@ import reportWebVitals from './reportWebVitals';
   [0, 0, 0, 0],
   [0, 0, 0, 0]
 ]; */
+
+
 console.log('gb',GameBoard.state);
 document.onkeydown = checkKey;
 function checkKey(e) {

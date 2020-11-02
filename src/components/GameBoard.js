@@ -13,53 +13,48 @@ class GameBoard extends Component{
                 [0, 0, 0, 0]
             ]
         };
-        //let s = this.startGame();
-        window.addEventListener('keydown', function(e) {
-            switch (e.key) {
-                case ' ':
-                  
-                  break;
-                case 'ArrowLeft':
-                    break;
-                case 'ArrowUp':
-                    break;
-                case 'ArrowRight':
-                    break;
-                case 'ArrowDown':
-                    break;
-            }
-          });
+        this.onKeyDown = (e) =>{
+            console.log('asdfadf', e);
+        }
+
     }
     
-    startGame = () =>{
-        let x = this.getRandomIndex();
-        let y = this.getRandomIndex();
-        let b  = [...this.state.board];
-        console.log('boardCopy? ', b);
-        b[x][y] = 2;
-        this.setState({board: b});
-        console.log('afterChange state? ', this.state.board);
+    startGame = (e) =>{
+            let x = this.getRandomIndex();
+            let y = this.getRandomIndex();
+            let b  = [...this.state.board];
+            console.log('boardCopy? ', b);
+            b[x][y] = 2;
+            this.setState({board: b});
+            console.log('afterChange state? ', this.state.board);
     }
 
     getRandomIndex = () =>{
         return Math.floor(Math.random() * 4);
     }
-
+    onKeyPress = (e) =>{
+        switch(e.key){
+            case ' ': this.startGame(); break;
+        }
+        console.log(e.key);
+    }
     render(){
         const {boardState} = this.props;
         return(
-            <div onClick={this.startGame} className="game-board">
-                {/* <h1>Game Board</h1> */}
-                {this.state.board.map((state) => {
-                    return state.map((s) =>{
-                        if(s > 0){
-                            return(<GameBoardItem id="#active-tile" state ={s}/*  key ={index} *//>);
-                        }else{
-                            return(<GameBoardItem id="empty-tile" state={s} /* key={index} *//>);
-                        }
-                    })
-                 
-                })}
+            <div tabIndex="-1" onKeyDown={(e) => this.onKeyPress(e)} className="bg">
+                <div className="game-board">
+                    {/* <h1>Game Board</h1> */}
+                    {this.state.board.map((state) => {
+                        return state.map((s) =>{
+                            if(s > 0){
+                                return(<GameBoardItem id="#active-tile" state ={s}/*  key ={index} *//>);
+                            }else{
+                                return(<GameBoardItem id="empty-tile" state={s} /* key={index} *//>);
+                            }
+                        })
+                    
+                    })}
+                </div>
             </div>
         );
     }
