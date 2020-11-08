@@ -38,23 +38,48 @@ class GameBoard extends Component{
     }
     moveBoardUp = () =>{
         let b = [...this.state.board];
-        for(let i = 1; i < 4; i++){
-            for(let j = 0; j < 4; j++){
-                if(b[i - 1][j] === 0){
-                    let temp = b[i][j];
-                    b[i - 1][j] = temp;
-                    b[i][j] = 0;
-                }
-                else if(b[i -1][j] === b[i][j]){
-                    let temp = b[i][j];
-                    b[i - 1][j] = 2 * temp;
-                    b[i][j] = 0
+       // let columns = [];
+        for(let i = 0; i < 4; i++){
+            let column = [b[0][i], b[1][i], b[2][i], b[3][i]];
+            let newColumn = [];
+
+            //push all non-zero digits to newColumn
+            for(let j =0; j < 4; j++){
+                if(column[j] !== 0){
+                    newColumn.push(column[j]);
                 }
             }
+            
+            //check for doubles to be resolved
+            for(let j = 0; j < newColumn.length - 1; j++){
+                if(newColumn[j] === newColumn[j + 1]){
+                    newColumn[j] *= 2;
+                    newColumn[j + 1] = 0;
+                }
+            }
+
+            //remove any middle zeros, i.e. removing gaps
+            for(let j =0; j < 4; j++){
+                if(newColumn[j] === 0){
+                    newColumn.slice(j, 1);
+                }
+            }
+
+            //pad newColumn with 0s to the correct length
+            while(newColumn.length < 4){
+                newColumn.push(0);
+            }
+
+            //move our changes to the actual board
+            for(let j = 0; j < 4;j++){
+                b[j][i] = newColumn[j];
+            }
         }
+
         this.setState({board:b});
         this.spawnNewBlock();
     }
+
     resetGame = () =>{
         let b = [...this.state.board];
         for(let i = 0; i < 4; i++){
