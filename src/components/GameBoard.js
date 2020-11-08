@@ -19,10 +19,14 @@ class GameBoard extends Component{
 
     }
     
-    startGame = (e) =>{
-            let x = this.getRandomIndex();
-            let y = this.getRandomIndex();
+    spawnNewBlock = (e) =>{
+            let x = this.getRandomIndex(), y = this.getRandomIndex();
             let b  = [...this.state.board];
+            while(b[x][y] !== 0){  
+                x = this.getRandomIndex();
+                y = this.getRandomIndex();
+            }
+            
             console.log('boardCopy? ', b);
             b[x][y] = 2;
             this.setState({board: b});
@@ -32,11 +36,42 @@ class GameBoard extends Component{
     getRandomIndex = () =>{
         return Math.floor(Math.random() * 4);
     }
+    moveBoardUp = () =>{
+        let b = [...this.state.board];
+        for(let i = 1; i < 4; i++){
+            for(let j = 0; j < 4; j++){
+                if(b[i - 1][j] === 0){
+                    let temp = b[i][j];
+                    b[i - 1][j] = temp;
+                    b[i][j] = 0;
+                }
+                else if(b[i -1][j] === b[i][j]){
+                    let temp = b[i][j];
+                    b[i - 1][j] = 2 * temp;
+                    b[i][j] = 0
+                }
+            }
+        }
+        this.setState({board:b});
+        this.spawnNewBlock();
+    }
+    resetGame = () =>{
+        let b = [...this.state.board];
+        for(let i = 0; i < 4; i++){
+            for(let j = 0; j < 4; j++){
+                b[i][j] = 0;
+            } 
+        }
+        this.setState({board: b});
+    }
+
     onKeyPress = (e) =>{
         console.log(e.key);
-      /*   switch(e.key){
-            case 'Enter': this.startGame(); break;
-        } */
+        switch(e.key){
+            case 'Enter': this.spawnNewBlock(); break;
+            case 'ArrowUp': this.moveBoardUp(); break;
+            case 'r': this.resetGame(); break;
+        } 
         
     }
     render(){
