@@ -42,6 +42,7 @@
   line-height: 125px;
  
 }
+
 .game-piece{
   position: relative;
   border-radius: 5px;
@@ -49,19 +50,10 @@
   width: 125px;
   background-color: rgb(246, 242, 222);
   border: 3px solid black;
-}
-
-#empty-tile{
-background-color:rgb(122, 120, 109) ;
-}
-.bg{
-  background-color: #282c34;
-  height: 100%;
-  width: 100%;
-  top: -20px;
-}
-#active-tile{
-  background-color:rgb(246, 242, 222)
+  text-align: center;
+  line-height: 125px;
+  font-size: 55px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #empty-tile{
@@ -77,4 +69,52 @@ background-color:rgb(122, 120, 109) ;
 
 #active-tile{
   background-color:rgb(246, 242, 222)
+}
+
+#empty-tile{
+background-color:rgb(122, 120, 109) ;
+}
+
+.bg{
+  background-color: #282c34;
+  height: 100%;
+  width: 100%;
+  top: -20px;
+}
+
+#active-tile{
+  background-color:rgb(246, 242, 222)
+}
+
+.tile-2{
+  background-color: #eee4da ;
+  color: rgb(68, 66, 66)
+}
+
+.tile-4{
+  background-color: #eee1c9 ;
+}
+
+.tile-8{
+  background-color: #f3b27a ;
+  color: white;
+}
+
+.tile-16{
+  background-color: #f75f3b ;
+  color: white;
+}
+
+.tile-32{
+  background-color: rgb(255, 118, 77) ;
+  color: white;
+}
+
+.tile-64{
+  background-color: rgb(238, 82, 55) ; 
+  color: white;
+}
+.tile-128{
+  background-color: #edd073 ; 
+  color: white;
 }
