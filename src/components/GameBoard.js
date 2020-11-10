@@ -45,11 +45,9 @@ class GameBoard extends Component{
         for(let i = 0; i < 4; i++){
             switch(direction){
                 case 'down':
-                case 'up' : section = [b[0][i], b[1][i], b[2][i], b[3][i]];
-                            break;
-                case 'right':
-                case 'left': section = [b[i][0], b[i][1], b[i][2], b[i][3]];
-                            break;
+                case 'up' : section = [b[0][i], b[1][i], b[2][i], b[3][i]]; break;
+                case 'right': 
+                case 'left': section = [b[i][0], b[i][1], b[i][2], b[i][3]]; break;
             }
             let newSection = [];
 
@@ -76,14 +74,15 @@ class GameBoard extends Component{
                     }
                 }               
             }
-
+            console.log('post doubles', newSection);
             //remove any middle zeros, i.e. removing gaps
-            for(let j =0; j < 4; j++){
+            for(let j = 0; j < newSection.length - 1; j++){
                 if(newSection[j] === 0){
-                    newSection.slice(j, 1);
+                    newSection.splice(j, 1);
+                    console.log('0 cut');
                 }
             }
-
+            console.log('post remove 0s', newSection);
             //pad newColumn with 0s to the correct length
             while(newSection.length < 4){
                 if(direction === 'right' || direction === 'down'){
@@ -93,7 +92,7 @@ class GameBoard extends Component{
                 }
 
             }
-
+            console.log('post size fixing' ,newSection);
             //move our changes to the actual board
             for(let j = 0; j < 4;j++){
                 if(direction === 'up' || direction === 'down'){
@@ -109,6 +108,10 @@ class GameBoard extends Component{
         this.setState({board:b});
         this.spawnNewBlock();
     }
+
+
+
+
     moveBoardLeft = () =>{
         let b = [...this.state.board];
        // let columns = [];
