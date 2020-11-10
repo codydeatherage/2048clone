@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import GameBoardItem from './GameBoardItem';
 
-
 class GameBoard extends Component{
     constructor(){
         super();
@@ -32,7 +31,6 @@ class GameBoard extends Component{
                 b[x][y] = 2;
                 this.setState({board: b});
             }
-/*             console.log('afterChange state? ', this.state.board); */
     }
 
     getRandomIndex = () =>{
@@ -74,7 +72,7 @@ class GameBoard extends Component{
                     }
                 }               
             }
-            console.log('post doubles', newSection);
+
             //remove any middle zeros, i.e. removing gaps
             for(let j = 0; j < newSection.length - 1; j++){
                 if(newSection[j] === 0){
@@ -82,7 +80,7 @@ class GameBoard extends Component{
                     console.log('0 cut');
                 }
             }
-            console.log('post remove 0s', newSection);
+
             //pad newColumn with 0s to the correct length
             while(newSection.length < 4){
                 if(direction === 'right' || direction === 'down'){
@@ -92,7 +90,7 @@ class GameBoard extends Component{
                 }
 
             }
-            console.log('post size fixing' ,newSection);
+
             //move our changes to the actual board
             for(let j = 0; j < 4;j++){
                 if(direction === 'up' || direction === 'down'){
@@ -101,10 +99,8 @@ class GameBoard extends Component{
                 else if(direction === 'left' || direction === 'right'){
                     b[i][j] = newSection[j];
                 }
-
             }
         }
-
         this.setState({board:b});
         this.spawnNewBlock();
     }
@@ -145,11 +141,9 @@ class GameBoard extends Component{
     }
 
     render(){
-        const {boardState} = this.props;
         return(
             <div tabIndex="-1" onKeyDown={(e) => this.onKeyPress(e)} className="bg">
                 <div className="game-board">
-                    {/* <h1>Game Board</h1> */}
                     {this.state.board.map((value) => {
                         return value.map((s) =>{
                             if(s > 0){
@@ -157,8 +151,7 @@ class GameBoard extends Component{
                             }else{
                                 return(<GameBoardItem id="empty-tile" value={s} /* key={index} *//>);
                             }
-                        })
-                    
+                        })   
                     })}
                 </div>
             </div>
