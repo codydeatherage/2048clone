@@ -22,20 +22,23 @@ class GameBoard extends Component{
     spawnNewBlock = (e) =>{
             let x = this.getRandomIndex(), y = this.getRandomIndex();
             let b  = [...this.state.board];
-            while(b[x][y] !== 0){  
-                x = this.getRandomIndex();
-                y = this.getRandomIndex();
+
+            if(!this.boardFull()){
+                while(b[x][y] !== 0){  
+                    x = this.getRandomIndex();
+                    y = this.getRandomIndex();
+                }
+                console.log('boardCopy? ', b);
+                b[x][y] = 2;
+                this.setState({board: b});
             }
-            
-            console.log('boardCopy? ', b);
-            b[x][y] = 2;
-            this.setState({board: b});
             console.log('afterChange state? ', this.state.board);
     }
 
     getRandomIndex = () =>{
         return Math.floor(Math.random() * 4);
     }
+
     moveBoardUp = () =>{
         let b = [...this.state.board];
        // let columns = [];
@@ -99,6 +102,19 @@ class GameBoard extends Component{
         } 
         
     }
+
+    boardFull = () =>{
+        let b = [...this.state.board];
+        for(let i = 0; i < 4; i++){
+            for(let j = 0; j < 4; j++){
+                if(b[i][j] === 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     render(){
         const {boardState} = this.props;
         return(
