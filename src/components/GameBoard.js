@@ -32,13 +32,126 @@ class GameBoard extends Component{
                 b[x][y] = 2;
                 this.setState({board: b});
             }
-            console.log('afterChange state? ', this.state.board);
+/*             console.log('afterChange state? ', this.state.board); */
     }
 
     getRandomIndex = () =>{
         return Math.floor(Math.random() * 4);
     }
 
+    moveTiles = (direction) => {
+        let b = [...this.state.board];
+        let section = [];
+        for(let i = 0; i < 4; i++){
+            switch(direction){
+                case 'down':
+                case 'up' : section = [b[0][i], b[1][i], b[2][i], b[3][i]];
+                            break;
+                case 'right':
+                case 'left': section = [b[i][0], b[i][1], b[i][2], b[i][3]];
+                            break;
+            }
+            let newSection = [];
+
+            //push all non-zero digits to newColumn
+            for(let j = 0; j < 4; j++){
+                if(section[j] !== 0){
+                    newSection.push(section[j]);
+                }
+            }
+            
+            //check for doubles to be resolved
+            if(direction === 'left' || direction === 'up'){
+                for(let j = 0; j < newSection.length - 1; j++){
+                    if(newSection[j] === newSection[j + 1]){
+                        newSection[j] *= 2;
+                        newSection[j + 1] = 0;
+                    }
+                }
+            }else{
+                for(let j = 0 ; j < newSection.length - 1; j++){
+                    if(newSection[j] === newSection[j + 1]){
+                        newSection[j + 1] *= 2;
+                        newSection[j] = 0;
+                    }
+                }               
+            }
+
+            //remove any middle zeros, i.e. removing gaps
+            for(let j =0; j < 4; j++){
+                if(newSection[j] === 0){
+                    newSection.slice(j, 1);
+                }
+            }
+
+            //pad newColumn with 0s to the correct length
+            while(newSection.length < 4){
+                if(direction === 'right' || direction === 'down'){
+                    newSection.unshift(0);
+                }else{
+                    newSection.push(0);
+                }
+
+            }
+
+            //move our changes to the actual board
+            for(let j = 0; j < 4;j++){
+                if(direction === 'up' || direction === 'down'){
+                    b[j][i] = newSection[j];
+                }
+                else if(direction === 'left' || direction === 'right'){
+                    b[i][j] = newSection[j];
+                }
+
+            }
+        }
+
+        this.setState({board:b});
+        this.spawnNewBlock();
+    }
+    moveBoardLeft = () =>{
+        let b = [...this.state.board];
+       // let columns = [];
+        for(let i = 0; i < 4; i++){
+            let row = [b[i][0], b[i][1], b[i][2], b[i][3]];
+            let newRow = [];
+
+            //push all non-zero digits to newColumn
+            for(let j = 0; j < 4; j++){
+                if(row[j] !== 0){
+                    newRow.push(row[j]);
+                }
+            }
+            
+            //check for doubles to be resolved
+            for(let j = 0; j < newRow.length - 1; j++){
+                if(newRow[j] === newRow[j + 1]){
+                    newRow[j] *= 2;
+                    newRow[j + 1] = 0;
+                }
+            }
+
+            //remove any middle zeros, i.e. removing gaps
+            for(let j =0; j < 4; j++){
+                if(newRow[j] === 0){
+                    newRow.slice(j, 1);
+                }
+            }
+
+            //pad newColumn with 0s to the correct length
+            while(newRow.length < 4){
+                newRow.push(0);
+            }
+
+            //move our changes to the actual board
+            for(let j = 0; j < 4;j++){
+                b[i][j] = newRow[j];
+            }
+        }
+
+        this.setState({board:b});
+        this.spawnNewBlock();
+    }
     moveBoardUp = () =>{
         let b = [...this.state.board];
        // let columns = [];
@@ -97,7 +210,10 @@ class GameBoard extends Component{
         console.log(e.key);
         switch(e.key){
             case 'Enter': this.spawnNewBlock(); break;
-            case 'ArrowUp': this.moveBoardUp(); break;
+            case 'ArrowUp': this.moveTiles('up'); break;
+            case 'ArrowLeft': this.moveTiles('left'); break;
+            case 'ArrowDown': this.moveTiles('down'); break;
+            case 'ArrowRight': this.moveTiles('right'); break;
             case 'r': this.resetGame(); break;
         } 
         
