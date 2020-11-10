@@ -13,10 +13,10 @@ class GameBoardItem extends Component{
     
     render(){
         let id = this.props.id;
-        if(this.props.state > 0){
+        if(this.props.value > 0){
             return(
                 <div onKeyDown={this.keyDown} className="game-piece" id={id}>
-                    <h1>{this.props.state}</h1>
+                    <h1>{this.props.value}</h1>
                 </div>
             )
         }else{

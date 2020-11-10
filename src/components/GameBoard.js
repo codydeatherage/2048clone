@@ -150,12 +150,12 @@ class GameBoard extends Component{
             <div tabIndex="-1" onKeyDown={(e) => this.onKeyPress(e)} className="bg">
                 <div className="game-board">
                     {/* <h1>Game Board</h1> */}
-                    {this.state.board.map((state) => {
-                        return state.map((s) =>{
+                    {this.state.board.map((value) => {
+                        return value.map((s) =>{
                             if(s > 0){
-                                return(<GameBoardItem id="#active-tile" state ={s}/*  key ={index} *//>);
+                                return(<GameBoardItem id="#active-tile" value={s}/*  key ={index} *//>);
                             }else{
-                                return(<GameBoardItem id="empty-tile" state={s} /* key={index} *//>);
+                                return(<GameBoardItem id="empty-tile" value={s} /* key={index} *//>);
                             }
                         })
                     
